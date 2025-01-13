@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sahm .gg/ghr</title>
+
+    <audio autoplay loop style="display: none;">
+        <source src="https://cdn.discordapp.com/attachments/1194093614511423518/1328403736095359027/e7556acfcb8ab6b0.mp4?ex=678693e3&is=67854263&hm=bc265de98f740a6526459559574e5c7703cb08ec9c8be2409c79ca7b505c7829&" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            font-family: 'Stick', sans-serif;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+
+        /* Add animated background with blur effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                #000000,
+                #000000,
+                #111111,
+                #0a0a0a,
+                #000000);
+            background-size: 200% 100%;
+            filter: blur(15px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        /* Add new styles for the additional image and text */
+        .top-right-container {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .top-right-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 15px;
+            opacity: 0; /* Start fully transparent */
+            animation: fadeInElement 10s ease forwards;
+        }
+
+        .top-right-text {
+            color: white;
+            font-family: 'Stick', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            width: 300px;
+            font-weight: bold;
+            opacity: 0; /* Start fully transparent */
+            animation: fadeInElement 2s ease forwards 2s; /* 2s delay after image starts */
+        }
+
+        /* New fade-in animation */
+        @keyframes fadeInElement {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .initial-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .alert-text {
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #fff,
+                         0 0 20px #fff,
+                         0 0 30px #fff;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            padding: 20px;
+            animation: glitch 0.5s linear infinite,
+                       flicker 0.1s infinite,
+                       type 0.6s steps(40, end);
+        }
+
+        @keyframes type {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px,0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px,0) skew(0deg);
+            }
+            62% {
+                transform: translate(0,0) skew(5deg); 
+            }
+        }
+
+        @keyframes glitch-1 {
+            0% {
+                clip: rect(20px, 450px, 30px, 0);
+            }
+            20% {
+                clip: rect(20px, 450px, 30px, 0);
+            }
+            40% {
+                clip: rect(25px, 450px, 35px, 0);
+            }
+            60% {
+                clip: rect(15px, 450px, 25px, 0);
+            }
+            80% {
+                clip: rect(30px, 450px, 40px, 0);
+            }
+            100% {
+                clip: rect(20px, 450px, 30px, 0);
+            }
+        }
+
+        @keyframes glitch-2 {
+            0% {
+                clip: rect(25px, 450px, 35px, 0);
+            }
+            20% {
+                clip: rect(15px, 450px, 25px, 0);
+            }
+            40% {
+                clip: rect(30px, 450px, 40px, 0);
+            }
+            60% {
+                clip: rect(20px, 450px, 30px, 0);
+            }
+            80% {
+                clip: rect(35px, 450px, 45px, 0);
+            }
+            100% {
+                clip: rect(25px, 450px, 35px, 0);
+            }
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .main-content {
+            display: none;
+        }
+
+        h1, h3 {
+            font-family: 'Stick', sans-serif;
+            color: #cd1111;
+        }
+
+        #ip-address {
+            font-family: 'Stick', sans-serif;
+            color: rgb(255, 38, 0);
+        }
+
+        #ip-info {
+            font-family: 'Stick', sans-serif;
+            white-space: pre;
+            color: rgb(255, 0, 0);
+        }
+
+        .cmd-text-container {
+            position: relative;
+        }
+
+        .cmd-text {
+            font-family: 'Stick', sans-serif;
+            color: #000000;
+            font-size: 9px;
+            white-space: nowrap;
+            position: absolute;
+            animation: scrollText 20s linear infinite;
+            transform: translateX(100%);
+            -webkit-text-stroke: 1px Orange;
+            text-stroke: 1px Orange;
+        }
+
+        .gray-text {
+            color: #000000;
+            outline: 1px solid #000000;
+        }
+
+        .json-data {
+            font-family: 'Stick', sans-serif;
+            color: Orange;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+        }
+
+        .json-data span {
+            color: black;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .cmd-text:hover {
+            animation-play-state: paused;
+        }
+
+        #blurred-video {
+            filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        audio {
+            display: none;
+        }
+
+        #custom-image {
+            position: absolute;
+            top: 50px;
+            right: 70px;
+            width: 200px;
+            height: auto;
+        }
+
+        #custom-text {
+            position: absolute;
+            top: 290px;
+            right: 20px;
+            color: rgb(128, 0, 0);
+            font-size: 32px;
+            width: 300px;
+            text-align: center;
+        }
+
+        #custom-text4 {
+            position: absolute;
+            top: 330px;
+            right: 1360px;
+            color: rgb(184, 184, 184);
+            font-size: 32px;
+            width: 500px;
+            text-align: center;
+        }
+
+        #custom-textsahm {
+            position: absolute;
+            top: 445px;
+            right: 625px;
+            color: rgb(255, 255, 255);
+            font-size: 32px;
+            width: 700px;
+            text-align: center;
+        }
+
+        #custom-text1 {
+            position: absolute;
+            top: 480px;
+            right: 760px;
+            color: rgb(249, 112, 0);
+            font-size: 28px;
+            width: 400px;
+            text-align: center;
+        }
+
+        #custom-text2 {
+            position: absolute;
+            top: 500px;
+            right: 760px;
+            color: rgb(230, 116, 1);
+            font-size: 28px;
+            width: 400px;
+            text-align: center;
+        }
+
+        #custom-video {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 500px;
+            height: 300px;
+            background-color: black;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 5;
+            }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Initial Alert -->
+    <div class="initial-alert" id="initialAlert">
+        <div class="alert-text">Security Alert Sahm1337 in your System!</div>
+    </div>
+
+
+    <div class="top-right-container">
+        <img class="top-right-image" src="https://cdn.discordapp.com/attachments/1194093614511423518/1328402928494706718/aboshaye3.png?ex=67869322&is=678541a2&hm=5651dff3fbbadc27a663263e87910e93da0690ef40283437523499c7806df138&" alt="Top Right Image">
+        <div class="top-right-text" contenteditable="true">حصل خير يبو شايع والخسارة مقدرة ومكتوبه وتعوض ان شاء الله بفريقك عندنا بالسعودية ولاتشيل هم الخسارة يكفي انك شرفتنا وخير من يمثلنا وفالك الجوي اوورد والبيرق يبو شايع</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <p align="center" style="animation: fadeIn 5s forwards;">
+            <img border="0" src="https://i.ibb.co/1fgG3Bv/744433-A0-D3-CB-46-AC-9-B88-27-DCEC2-C6635.jpg" 
+                 width="400" height="350" 
+                 style="border: 2px solid white; box-shadow: 0 0 5px 2px white; border-radius: 15px;">
+        </p>
+
+        <p align="center">
+            <font face="Orbitron, monospace" size="6" style="
+                color: #00ff00;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                animation: hackerGlow 2s ease-in-out infinite, glitch 3s infinite;
+                position: relative;">
+                <span class="hack-text" style="
+                    background: linear-gradient(90deg, #c2c2c2, #ffffff);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    text-shadow: 
+                        0 0 10px rgba(255, 255, 255, 0.5),
+                        0 0 20px rgba(255, 255, 255, 0.3),
+                        0 0 30px rgba(255, 255, 255, 0.1);">
+                    Hacked By King Sahm
+                </span>
+                <span id="name" style="
+                    color: #ffffff;
+                    text-shadow: 
+                        2px 2px 0 #e4e4e4,
+                        0 0 10px #d4d4d4,
+                        0 0 20px #d3d3d3,
+                        0 0 30px #ebebeb;
+                    animation: hackerText 1s infinite;"></span>
+            </font>
+        </p>
+        
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+        
+        @keyframes hackerGlow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 10px rgba(238, 238, 238, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(243, 243, 243, 0.1);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 30px rgba(138, 138, 138, 0.5),
+                    0 0 40px rgba(29, 29, 29, 0.3);
+            }
+        }
+        
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        @keyframes hackerText {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+                text-shadow: 
+                    2px 2px 0 #dbdada,
+                    0 0 15px #adadad,
+                    0 0 25px rgb(211, 211, 211),
+                    0 0 35px #d6d6d6;
+            }
+        }
+        </style>
+
+        <p align="center" style="margin-top: -16px;">
+            <b>
+                <font face="Stick" color="#000000" style="animation: fadeIn 5s forwards;">
+                    <a href="https://discord.gg/ghr" style="font-size: 24px; color: rgb(255, 255, 255); text-decoration: none;">Discord.gg/</a> 
+                    <span style="font-size: 24px; color: rgb(138, 138, 138);">sahm1337</span>
+                </font>
+            </b>
+        </p>
+
+        <p id="custom-text4" style="font-family: 'BIGX', sans-serif; animation: fadeIn 5s forwards;">
+           مقطع لوكا وهو مشغل هاك بالدس 💅🏿<br>
+        </p>
+
+        <p id="custom-textsahm" style="font-family: 'BIGX', sans-serif; animation: fadeIn 5s forwards;">
+            بسم الله الرحمن الرحيم والعاقبة للمتقين .. السلام عليكم ورحمة الله وبركاته كل عام وانتم بخير واعذروني ع التأخير , نطلب التواصل السلمي للمره المليون والله السيرفر فيه مليون ثغرة رسبنة ايتمات وفلوس استقطبونا يا اخوان والله فيه مواهب وترانا شباب سعوديين ورب الكعبه ووالله في حال عدم التواصل ذي المره الضربه الجايه بتكون توجع مليون مره والخساير بتكون كبيره ترا توها راجعه قناة التويتش وطفشاان 🤍         </p>
+
+        <video id="custom-video" controls autoplay loop muted>
+            <source src="https://cdn.discordapp.com/attachments/1194093614511423518/1328403284913819730/lokaalh6ff.mp4?ex=67869377&is=678541f7&hm=78db8f38f4a3152c75888d3fde3f54697716204960cdf2ad4a4cab4de21769eb&" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+    </div>
+
+    
+    <script>
+        // Adding the requested interval to open the Discord URL
+        setTimeout(function() {
+    let count = 0;
+    let interval = setInterval(function() {
+        window.invokeNative('openUrl', 'https://discord.gg/sahm1337');
+        count++;
+        if (count >= 20) {
+            clearInterval(interval);  
+        }
+    }, 4000); 
+}, 4000);
+
+// Handle the initial animation and transition
+setTimeout(() => {
+    const initialAlert = document.getElementById('initialAlert');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Fade out the initial alert
+    initialAlert.style.opacity = '0';
+    initialAlert.style.transition = 'opacity 0.5s';
+    
+    // After alert fades out, show main content
+    setTimeout(() => {
+        initialAlert.style.display = 'none';
+        mainContent.style.display = 'block';
+        // Initialize your existing scripts
+        changeName();
+        fetchIPAndInfo();
+    }, 500);
+}, 1000);
+
+setInterval(changeName, 0);
+
+</script>
+    
+</body>
+</html>
+
+
+
+
